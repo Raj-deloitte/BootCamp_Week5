@@ -22,7 +22,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    margin-right: 20px;
+    /* margin-right: 10px; */
     color:#2C2C2C;
     font-size: 40px;
 }
@@ -32,12 +32,15 @@
 .deg{
     margin-bottom: 50px;
 }
+.weather_icon_api{
+    width: 10rem;
+}
 .row3{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 .col1{
     display: flex;
