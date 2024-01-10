@@ -1,0 +1,11 @@
+.logo{
+    display: flex;
+    padding-left: 25px;
+    align-items: center;
+    height: calc(100vh-100px);
+    background: #B2EBF280;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar-heading{
+    font-weight: 600;
+}
