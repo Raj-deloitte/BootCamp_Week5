@@ -13,10 +13,12 @@
     width: 90%;
   }
   .back {
-    color: #0170fe;
+    color: #0170FE;
+    font-weight: 600;
+    font-size: 1.2rem;
     display: flex;
     flex-direction: row;
-    width: 4rem;
+    width: 4.5rem;
     justify-content: space-between;
   }
   .add {
