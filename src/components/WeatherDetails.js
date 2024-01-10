@@ -42,7 +42,7 @@ const WeatherDetails = () => {
 
         <div className="Row-2">
           <div className="c-1">
-            TIME
+            TIMEs
             <p>{currentTime}</p>
           </div>
           <div className="c-1">
