@@ -9,12 +9,12 @@ const DashBoard = () => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState("");
   const [isCard, setIsCard] = useState(false);
+  
   const searchLocation = () => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=eb5fd6ce795d040ed78f3f6225960fa2`;
     axios.get(url).then((response) => {
       setData(response.data);
       setIsCard(true);
-      console.log(response);
     });
   };
 
