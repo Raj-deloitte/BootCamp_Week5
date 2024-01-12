@@ -1,28 +1,9 @@
-// store.js
-import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./reducers/index";
 
-const initialState = {
-  items: [],
-};
-console.log("from store", initialState);
-
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "ADD_ITEM":
-      return {
-        ...state,
-        items: [...state.items, action.payload],
-      };
-    case "REMOVE_ITEM":
-      return {
-        ...state,
-        items: state.items.filter((item) => item !== action.payload),
-      };
-    default:
-      return state;
-  }
-};
-
-const store = createStore(rootReducer);
+const store = configureStore({
+  reducer: rootReducer,
+});
 
 export default store;
+

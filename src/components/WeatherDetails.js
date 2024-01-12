@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./WeatherDetails.css";
+// import { Line } from "react-chartjs-2";
 import axios from "axios";
+import { addItem, removeItem } from "../actions";
+import { isDraft } from "@reduxjs/toolkit";
 
-const WeatherDetails = () => {
+const WeatherDetails = ({ isDisplayingFromDashboard, pdata }) => {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.items);
+  const myState = useSelector((state) => state.listItem);
   const [data, setData] = useState("");
   const { name } = useParams();
 
@@ -16,20 +19,29 @@ const WeatherDetails = () => {
   const [sunset, setSunset] = useState(null);
   const [dayLength, setDayLength] = useState(null);
   const [remainingDaylight, setRemainingDaylight] = useState(null);
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=eb5fd6ce795d040ed78f3f6225960fa2`;
+
+  // const [sunriseSunsetData, setSunriseSunsetData] = useState([]);
+
   useEffect(() => {
-    axios.get(url).then((response) => {
-      setData(response.data);
-    });
+    if (!isDisplayingFromDashboard) {
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=eb5fd6ce795d040ed78f3f6225960fa2`;
+      axios.get(url).then((response) => {
+        setData(response.data);
+        console.log("response", response.data);
+      });
+    } else {
+      setData(pdata);
+      console.log("pdata", pdata);
+    }
   }, []);
+
   const addButtons = () => {
     setClicked(!click);
-    dispatch({ type: "ADD_ITEM", payload: data });
-    console.log("added from add", items);
+    dispatch(addItem(data));
   };
   const removeButtons = () => {
     setClicked(false);
-    dispatch({ type: "REMOVE_ITEM", payload: data });
+    dispatch(removeItem(data));
   };
   const currentTime = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",
@@ -54,7 +66,6 @@ const WeatherDetails = () => {
     const minutes = Math.floor((dayLengthInMilliseconds % 3600000) / 60000);
     const dayLength = `${hours}H ${minutes}M`;
     setDayLength(dayLength);
-    
 
     const remainingDaylightInMilliseconds = sunsetDate - new Date();
     if (remainingDaylightInMilliseconds > 0) {
@@ -76,30 +87,65 @@ const WeatherDetails = () => {
   useEffect(() => {
     const sunriseValue = data?.sys?.sunrise;
     const sunsetValue = data?.sys?.sunset;
+    // const sunriseT = new Date(sunriseValue).toLocaleTimeString();
+    // const sunsetT = new Date(sunsetValue).toLocaleTimeString();
+    // setSunriseSunsetData([
+    //   { x: 0, y: 0, label: 'Sunrise', time: sunriseT },
+    //   { x: 1, y: 1, label: 'Sunset', time: sunsetT },
+    // ]);
     calculateDayLength(sunriseValue, sunsetValue);
-  }, []);
+  }, [sunrise]);
+
+  // const chartData = {
+  //   datasets: [
+  //     {
+  //       label: 'Sunrise and Sunset Time',
+  //       data: sunriseSunsetData,
+  //       fill: false,
+  //       borderColor: 'rgba(75,192,192,1)',
+  //       tension: 0.1,
+  //     },
+  //   ],
+  // };
+
+  // const chartOptions = {
+  //   scales: {
+  //     x: {
+  //       type: 'linear',
+  //       position: 'bottom',
+  //     },
+  //     y: {
+  //       type: 'linear',
+  //       position: 'left',
+  //     },
+  //   },
+  // };
 
   return (
     <>
       <div className="weatherContainer">
         <div className="breadcrump">
-          <Link to={"/"}>
-            <div className="back">
-              <img src="../asset/arrow_back_ios_24px.svg" alt="left" />
-              <div>Back</div>
-            </div>
-          </Link>
-          {!click ? (
+          {!isDisplayingFromDashboard && (
+            <Link to={"/"}>
+              <div className="back">
+                <img src="../asset/arrow_back_ios_24px.svg" alt="left" />
+                <div>Back</div>
+              </div>
+            </Link>
+          )}
+          {!click && !isDisplayingFromDashboard ? (
             <div className="add">
               <div onClick={addButtons}>Add to List </div>
               <img src="../asset/Union.svg" alt="add" />
             </div>
           ) : (
             <div className="bt">
-              <button className="green">
-                Added to list
-                <img src="../asset/done_24px.svg" className="tick" />
-              </button>
+              {!isDisplayingFromDashboard && (
+                <button className="green">
+                  Added to list
+                  <img src="../asset/done_24px.svg" className="tick" />
+                </button>
+              )}
               <button className="red" onClick={removeButtons}>
                 Remove
               </button>
@@ -150,7 +196,7 @@ const WeatherDetails = () => {
                 <span className="time">{remainingDaylight}</span>
               </div>
             </div>
-            <div>GRAPH</div>
+            <div>Graph</div>
           </div>
         </div>
       </div>

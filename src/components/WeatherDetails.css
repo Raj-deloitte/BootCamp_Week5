@@ -126,7 +126,6 @@
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
-    margin-right: 6px;
   }
   
   @media screen and (max-width: 900px) and (min-width: 600px) {
