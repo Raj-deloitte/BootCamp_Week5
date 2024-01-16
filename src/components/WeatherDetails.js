@@ -7,7 +7,7 @@ import axios from "axios";
 import { addItem, removeItem } from "../actions";
 import { isDraft } from "@reduxjs/toolkit";
 
-const WeatherDetails = ({ isDisplayingFromDashboard, pdata }) => {
+const WeatherDetails = ({ isDisplayingFromDashboard, pdata ,isMobile}) => {
   const dispatch = useDispatch();
   const myState = useSelector((state) => state.listItem);
   const [data, setData] = useState("");
@@ -87,39 +87,9 @@ const WeatherDetails = ({ isDisplayingFromDashboard, pdata }) => {
   useEffect(() => {
     const sunriseValue = data?.sys?.sunrise;
     const sunsetValue = data?.sys?.sunset;
-    // const sunriseT = new Date(sunriseValue).toLocaleTimeString();
-    // const sunsetT = new Date(sunsetValue).toLocaleTimeString();
-    // setSunriseSunsetData([
-    //   { x: 0, y: 0, label: 'Sunrise', time: sunriseT },
-    //   { x: 1, y: 1, label: 'Sunset', time: sunsetT },
-    // ]);
     calculateDayLength(sunriseValue, sunsetValue);
   }, [sunrise]);
 
-  // const chartData = {
-  //   datasets: [
-  //     {
-  //       label: 'Sunrise and Sunset Time',
-  //       data: sunriseSunsetData,
-  //       fill: false,
-  //       borderColor: 'rgba(75,192,192,1)',
-  //       tension: 0.1,
-  //     },
-  //   ],
-  // };
-
-  // const chartOptions = {
-  //   scales: {
-  //     x: {
-  //       type: 'linear',
-  //       position: 'bottom',
-  //     },
-  //     y: {
-  //       type: 'linear',
-  //       position: 'left',
-  //     },
-  //   },
-  // };
 
   return (
     <>
@@ -129,14 +99,14 @@ const WeatherDetails = ({ isDisplayingFromDashboard, pdata }) => {
             <Link to={"/"}>
               <div className="back">
                 <img src="../asset/arrow_back_ios_24px.svg" alt="left" />
-                <div>Back</div>
+               {isMobile ? null : <div>Back</div>} 
               </div>
             </Link>
           )}
           {!click && !isDisplayingFromDashboard ? (
             <div className="add">
               <div onClick={addButtons}>Add to List </div>
-              <img src="../asset/Union.svg" alt="add" />
+              <img src="../asset/Union.svg" alt="add" className="add_icon"/>
             </div>
           ) : (
             <div className="bt">

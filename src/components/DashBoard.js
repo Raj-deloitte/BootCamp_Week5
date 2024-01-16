@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import WeatherDetails from "./WeatherDetails";
 
-const DashBoard = () => {
+const DashBoard = ({settings}) => {
   // const [data,setData]=useState("");
 
   const [search, setSearch] = useState("");
@@ -25,14 +25,7 @@ const DashBoard = () => {
 
     });
   };
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
+  
   return (
     <>
       <div className="search_div">
@@ -74,7 +67,6 @@ const DashBoard = () => {
           <WeatherDetails pdata={item} isDisplayingFromDashboard={true}/>
         </div>
       ))}
-      
       </Slider>
     </>
   );
