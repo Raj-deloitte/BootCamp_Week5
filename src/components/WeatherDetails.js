@@ -116,9 +116,12 @@ const WeatherDetails = ({ isDisplayingFromDashboard, pdata ,isMobile}) => {
                   <img src="../asset/done_24px.svg" className="tick" />
                 </button>
               )}
-              <button className="red" onClick={removeButtons}>
-                Remove
-              </button>
+              {isDisplayingFromDashboard ? (<button className="red right" onClick={removeButtons}>
+              Remove
+            </button>) : (<button className="red" onClick={removeButtons}>
+              Remove
+            </button>)}
+              
             </div>
           )}
         </div>

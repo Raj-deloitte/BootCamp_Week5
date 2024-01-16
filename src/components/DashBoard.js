@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import WeatherDetails from "./WeatherDetails";
 
-const DashBoard = ({ settings }) => {
+const DashBoard = ({isMobile}) => {
   // const [data,setData]=useState("");
 
   const [search, setSearch] = useState("");
@@ -17,7 +17,15 @@ const DashBoard = ({ settings }) => {
   const [loading, setLoading]=useState(false);
 
   const items = useSelector((state) => state.listItem.items);
-  console.log("home se ", items);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+  
   const searchLocation = () => {
     setLoading(true);
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=eb5fd6ce795d040ed78f3f6225960fa2`;
@@ -59,13 +67,24 @@ const DashBoard = ({ settings }) => {
           <div className="message">No locations added to watchlist </div>
         </div>
       )}
-      <Slider {...settings}>
+      {isMobile ? (<Slider {...settings} appendDots={(dots)=>(
+        <div style={{top: '10px'}}>
+        <ul style={{margin:'0'}}>{dots}</ul>
+        </div>
+      )}>
         {items.map((item, index) => (
           <div className="weather_card" key={index}>
             <WeatherDetails pdata={item} isDisplayingFromDashboard={true} />
           </div>
         ))}
-      </Slider>
+      </Slider>):(<Slider {...settings}>
+        {items.map((item, index) => (
+          <div className="weather_card" key={index}>
+            <WeatherDetails pdata={item} isDisplayingFromDashboard={true} />
+          </div>
+        ))}
+        </Slider>)}
+      
     </>
   );
 };
