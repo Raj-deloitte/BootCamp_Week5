@@ -8,24 +8,26 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import WeatherDetails from "./WeatherDetails";
 
-const DashBoard = ({settings}) => {
+const DashBoard = ({ settings }) => {
   // const [data,setData]=useState("");
 
   const [search, setSearch] = useState("");
   const [data, setData] = useState("");
   const [isCard, setIsCard] = useState(false);
+  const [loading, setLoading]=useState(false);
 
   const items = useSelector((state) => state.listItem.items);
   console.log("home se ", items);
   const searchLocation = () => {
+    setLoading(true);
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=eb5fd6ce795d040ed78f3f6225960fa2`;
     axios.get(url).then((response) => {
       setData(response.data);
       setIsCard(true);
-
+      setLoading(false);
     });
   };
-  
+
   return (
     <>
       <div className="search_div">
@@ -45,13 +47,9 @@ const DashBoard = ({settings}) => {
           />
         </div>
       </div>
-
-      {isCard && (
-        <Card data={data} />
-      ) 
-      }
-      {items.length === 0 && !isCard && 
-      (
+      {loading && (<div className="loading-screen"><p>Loading...</p></div>)}
+      {isCard && <Card data={data} />}
+      {items.length === 0 && !isCard && (
         <div className="initial-info">
           <img
             src="/asset/no-info-cloud.svg"
@@ -62,11 +60,11 @@ const DashBoard = ({settings}) => {
         </div>
       )}
       <Slider {...settings}>
-      {items.map((item, index) => (
-        <div className="weather_card" key={index}>
-          <WeatherDetails pdata={item} isDisplayingFromDashboard={true}/>
-        </div>
-      ))}
+        {items.map((item, index) => (
+          <div className="weather_card" key={index}>
+            <WeatherDetails pdata={item} isDisplayingFromDashboard={true} />
+          </div>
+        ))}
       </Slider>
     </>
   );

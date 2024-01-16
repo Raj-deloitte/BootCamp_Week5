@@ -74,10 +74,13 @@ a {
     line-height: 0.5rem;
   }
   .row2 {
-    padding: 0 1.5rem 0 1.5rem;
-    line-height: 0rem;
+    padding: 0 1.5rem 0 1rem;
+    line-height: 0.1rem;
   }
   .weather_icon_api {
     width: 7rem;
+  }
+  .row3{
+    padding: 0 1.5rem 0 1rem;
   }
 }
