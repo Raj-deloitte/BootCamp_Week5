@@ -1,11 +1,18 @@
-.logo{
-    display: flex;
-    padding-left: 25px;
-    align-items: center;
-    height: calc(100vh-100px);
-    background: #B2EBF280;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+.navBar {
+  display: flex;
+  width: 100%;
+  padding-left: 25px;
+  align-items: center;
+  height: calc(100vh-100px);
+  background: #b2ebf280;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
 }
-.navbar-heading{
-    font-weight: 600;
+.navbar-heading {
+  font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .navBar {
+    width: 100%;
+  }
 }

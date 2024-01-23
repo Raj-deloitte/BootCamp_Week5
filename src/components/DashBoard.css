@@ -1,7 +1,7 @@
 .search_box {
   margin-top: 4rem;
-  width: 60rem;
-  margin-left: 25rem;
+  width: 50rem;
+  margin-left: 30%;
   height: 3rem;
   display: flex;
   justify-content: space-around;
@@ -25,6 +25,14 @@
 }
 .search-icon {
   width: 1.5rem;
+  cursor: pointer;
+}
+.loading-screen{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }
 .initial-info {
   width: 100%;
@@ -44,3 +52,62 @@
 }
 
 /* eb5fd6ce795d040ed78f3f6225960fa2 */
+.weather_card {
+  width: 10rem;
+  height: 60rem;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 768px) {
+  .search_box {
+    width: 90%;
+    margin-left: 5%;
+  }
+  .search-icon {
+    width: 1rem;
+  }
+  .initial-info {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .no-info-cloud {
+    width: 50%;
+    margin-bottom: 3rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .message {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width :768px) and (max-width: 1440px) {
+  .search_box {
+    width: 80%;
+    margin-left: 10%;
+  }
+  .search-icon {
+    width: 1rem;
+  }
+  .initial-info {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .no-info-cloud {
+    width: 40%;
+    margin-bottom: 3rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .message {
+    font-size: 1.5rem;
+  }
+}

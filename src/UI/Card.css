@@ -1,80 +1,86 @@
-.Card{
-    margin-top: 5rem;
-    margin-left: 25%;
-    background-color:  #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 0px 4px 4px rgba(222, 103, 103, 0.1);
-    width: 400px;
-    height: 30vh;
-    display: flex;
-    flex-direction: column;
+.Card {
+  margin-top: 5rem;
+  margin-left: 30%;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px rgba(222, 103, 103, 0.1);
+  width: 25%;
+  height: 35vh;
+  display: flex;
+  flex-direction: column;
 }
-.row1{
-    display: flex;
-    justify-content:space-between;
-    /* padding: 10px; */
-    margin: 10px;
-    font-size: 22px;
-    line-height: 26px;
+.row1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 1.5rem 0 1.5rem;
+  font-size: 22px;
+  line-height: 2rem;
 }
-.row2{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    /* margin-right: 10px; */
-    color:#2C2C2C;
-    font-size: 40px;
+.row2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.5rem 0 1.5rem;
+  color: #2c2c2c;
+  font-size: 40px;
 }
-.r2{
-    display: flex;
+.r2 {
+  display: flex;
 }
-.deg{
-    margin-bottom: 50px;
+.deg {
+  margin-bottom: 50px;
 }
-.weather_icon_api{
-    width: 10rem;
+.weather_icon_api {
+  width: 10rem;
 }
-.row3{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-right: 10px;
+.row3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem 0 1.5rem;
 }
-.col1{
-    display: flex;
-    
+.col1 {
+  display: flex;
 }
-.col2{
-    padding-top: 10px;
-    color: #BFAF1B;
+.col2 {
+  color: #bfaf1b;
 }
-a{
-    text-decoration: none;
-    color: black;
+a {
+  text-decoration: none;
+  color: black;
 }
 
-
-@media (max-width: 840px) { 
-    .Card{
-     margin-left: 10%;
-    }  
+@media (max-width: 840px) {
+  .Card {
+    margin-left: 10%;
   }
+}
 
-
-@media (max-width: 640px) { 
-   .Card{
+@media (max-width: 640px) {
+  .Card {
     margin-left: 15%;
-    height:300px ;
-   }  
- }
-
-
-@media (max-width: 500px) { 
-    .Card{
     width: 250px;
-     margin-left: 15%;
-     height:300px ;
-    }  
+    height: 300px;
   }
+}
+
+@media (max-width: 500px) {
+  .Card {
+    width: 330px;
+    margin-left: 8%;
+    height: 200px;
+  }
+  .row1 {
+    line-height: 0.5rem;
+  }
+  .row2 {
+    padding: 0 1.5rem 0 1rem;
+    line-height: 0.1rem;
+  }
+  .weather_icon_api {
+    width: 7rem;
+  }
+  .row3{
+    padding: 0 1.5rem 0 1rem;
+  }
+}

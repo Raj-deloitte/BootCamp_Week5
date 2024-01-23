@@ -4,7 +4,7 @@ import './NavBar.css';
 const NavBar = () => {
   return (
     <>
-    <div className='logo'>
+    <div className='navBar'>
     <img src='/asset/logo.png' alt='logo'></img>
         <div className='navbar-heading'>Weather Forecast</div>
     </div>
